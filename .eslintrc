@@ -1,0 +1,26 @@
+{
+  "extends": ['airbnb'],
+  "rules": {
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'never',
+        jsx: 'never',
+        mjs: 'never',
+      },
+    ],
+    'import/no-extraneous-dependencies': 'off',
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error', 'info'],
+      },
+    ],
+    'react/jsx-filename-extension': 'off',
+    'react/prefer-stateless-function': 'off',
+    'comma-dangle': 'off',
+    "linebreak-style": 0,
+    'jsx-a11y/href-no-hash': 'off'
+  }
+}
