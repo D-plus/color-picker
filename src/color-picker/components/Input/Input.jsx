@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import classNames from 'classnames';
+import './Input.css';
 
-const Input = props => {
+export default function Input(props) {
   const {
     required,
     className,
@@ -24,8 +24,9 @@ const Input = props => {
     extraProps.value = value;
   }
   return (
-    <div className={classNames(className)}>
+    <div>
       <input
+        className={classNames('Input', className)}
         type={type}
         name={name}
         id={id}
@@ -40,7 +41,7 @@ const Input = props => {
       />
     </div>
   );
-};
+}
 
 Input.defaultProps = {
   label: null,
@@ -64,5 +65,3 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool
 };
-
-export default Input;

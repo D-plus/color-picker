@@ -7,14 +7,19 @@ class App extends Component {
     super(props);
     this.state = {
       colorPicker: {
-        value: '',
-        colors: []
+        value: '#FFCC33',
+        colors: [
+          { label: 'red', value: '#ff0000' },
+          { label: 'yellow', value: '#ffef00' },
+          { label: 'green', value: '#03a903' },
+          { label: 'blue', value: '#0079ff' }
+        ]
       }
     };
     this.handleColorChange = this.handleColorChange.bind(this);
   }
 
-  handleColorChange(nextColor) {
+  handleColorChange(e, nextColor) {
     console.log(nextColor);
     this.setState({
       colorPicker: {
@@ -22,6 +27,7 @@ class App extends Component {
         value: nextColor
       }
     });
+    this.forceUpdate();
   }
 
   render() {

@@ -1,0 +1,8 @@
+.Popover {
+  display: flex;
+  position: absolute;
+  border: 1px solid black;
+}
+.Popover-Arrow {
+  position: absolute;
+}

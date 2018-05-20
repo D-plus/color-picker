@@ -1,0 +1,9 @@
+.Input {
+  height: 100%;
+}
+.Input-Valid-Value {
+}
+
+.Input-Invalid-Value {
+  border: 2px solid red;
+}
