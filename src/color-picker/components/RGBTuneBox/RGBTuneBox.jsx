@@ -9,12 +9,12 @@ import Color from '../../helpers/Color';
 class RGBTuneBox extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    value: PropTypes.string,
+    className: PropTypes.string
   };
 
   static defaultProps = {
-    optionsList: ['r', 'g', 'b'],
     defaultRGBState: {
       r: 0,
       g: 0,
@@ -43,7 +43,7 @@ class RGBTuneBox extends Component {
   }
 
   componentWillUnmount() {
-    const { onChange, value, chageTemporaryHexValue } = this.props;
+    const { value, chageTemporaryHexValue } = this.props;
     if (!this.state.isColorSubmited) {
       // if color wasn`t submitted reset it to previous
       this.props.onChange(null, value);
@@ -71,12 +71,12 @@ class RGBTuneBox extends Component {
   }
 
   render() {
-    const { onChange, onSubmit, onClose, optionsList, value } = this.props;
+    const { onClose, className, defaultRGBState } = this.props;
     const { rgbObj } = this.state;
-    // console.log('this.props', this.props);
+
     return (
-      <div className="RGBTuneBox">
-        {optionsList.map((colorShortcut, key) => (
+      <div className={classNames('RGBTuneBox', className)}>
+        {Object.keys(defaultRGBState).map((colorShortcut, key) => (
           <input
             key={key}
             value={rgbObj[colorShortcut]}

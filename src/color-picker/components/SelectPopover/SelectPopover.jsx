@@ -6,11 +6,11 @@ import './SelectPopover.css';
 import SelectBox from '../SelectBox/SelectBox';
 import Popover from '../Popover/Popover';
 import expandable from '../hocs/expanable';
+import { selectPopoverTypes } from '../../type-check';
 
 class SelectPopover extends Component {
-  static propTypes = {
-    popoverClassName: PropTypes.string.isRequired
-  };
+  static propTypes = { ...selectPopoverTypes };
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -23,15 +23,17 @@ class SelectPopover extends Component {
       selectBoxIconColor,
       toggleComponent,
       open,
-      popoverContentRenderer,
+      popoverContentRenderer: {
+        contentContainer: ContentContainer,
+        extraProps = {}
+      },
       popoverClassName,
       popoverMargin,
       onChange,
-      onSubmit,
       options,
-      value
+      value,
+      chageTemporaryHexValue
     } = this.props;
-
     return (
       <div className="SelectPopover">
         <SelectBox
@@ -41,15 +43,20 @@ class SelectPopover extends Component {
           onClick={toggleComponent}
         />
         {open && (
-          <Popover boundWithElement={this.selectBox} margin={popoverMargin}>
-            {popoverContentRenderer(
-              onChange,
-              onSubmit,
-              this.props.toggleComponent,
-              options,
-              value,
-              this.selectBox
-            )}
+          <Popover
+            className={classNames('Popover', popoverClassName)}
+            boundWithElement={this.selectBox}
+            margin={popoverMargin}
+          >
+            <ContentContainer
+              onChange={onChange}
+              onClose={this.props.toggleComponent}
+              options={options}
+              value={value}
+              boundWithElement={this.selectBox}
+              chageTemporaryHexValue={chageTemporaryHexValue}
+              {...extraProps}
+            />
           </Popover>
         )}
       </div>

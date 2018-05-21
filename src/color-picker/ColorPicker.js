@@ -1,42 +1,18 @@
 import React, { Component } from 'react';
 import { bindAll } from 'lodash';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './ColorPicker.css';
 
 import { validateHexString } from './helpers/functions';
-import { listOfColors } from './type-check';
 import Input from './components/Input/Input';
 import SelectPopover from './components/SelectPopover/SelectPopover';
 import RGBTuneBox from './components/RGBTuneBox/RGBTuneBox';
 import ColorsList from './components/ColorsList/ColorsList';
-
-const setContent = (ContentComponent, extraProps = {}) => (
-  onChange,
-  onSubmit,
-  onClose,
-  options,
-  value,
-  boundWithElement
-) => {
-  return (
-    <ContentComponent
-      onChange={onChange}
-      onSubmit={onSubmit}
-      onClose={onClose}
-      options={options}
-      value={value}
-      boundWithElement={boundWithElement}
-      {...extraProps}
-    />
-  );
-};
+import { colorPickerTypes } from './type-check';
 
 class ColorPicker extends Component {
   static propTypes = {
-    color: PropTypes.string.isRequired,
-    colors: listOfColors,
-    onChange: PropTypes.func.isRequired
+    ...colorPickerTypes
   };
   constructor(props) {
     super(props);
@@ -93,27 +69,27 @@ class ColorPicker extends Component {
         <SelectPopover
           selectBoxIconName={'arrowDown'}
           selectBoxIconColor={temporaryHexValue || color}
-          popoverContentRenderer={setContent(RGBTuneBox, {
-            temporaryHexValue,
-            chageTemporaryHexValue: this.changeState('temporaryHexValue')
-          })}
           popoverClassName={'RGBTuneBoxPopover'}
           popoverMargin={20}
-          withoutOptions
+          popoverContentRenderer={{
+            contentContainer: RGBTuneBox,
+            extraProps: {
+              temporaryHexValue,
+              chageTemporaryHexValue: this.changeState('temporaryHexValue')
+            }
+          }}
           value={color}
           onChange={onChange}
-          onSubmit={() => console.log('onSubmit')}
-          onClose={() => console.log('onClose')}
         />
         <SelectPopover
           selectBoxIconName={'arrowDown'}
           selectBoxIconColor="#b1aeae"
-          popoverContentRenderer={setContent(ColorsList)}
-          popoverClassName={'RGBTuneBoxPopover'}
+          popoverContentRenderer={{ contentContainer: ColorsList }}
+          popoverClassName={'ColorsListPopover'}
           popoverMargin={20}
-          value={''}
+          value={color}
           options={colors}
-          onChange={() => console.log('onChange')}
+          onChange={onChange}
         />
       </div>
     );
