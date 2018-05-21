@@ -1,8 +1,22 @@
 .Popover {
   display: flex;
   position: absolute;
-  border: 1px solid black;
+  top: 100%;
+  margin: 10px 0 0 0;
+  right: 0;
+  box-shadow: 0 -2px 15px 0 rgba(0, 0, 0, 0.3);
 }
 .Popover-Arrow {
   position: absolute;
+  right: 17px;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #fff transparent;
+  text-indent: -9999px;
+}
+.RGBTuneBoxPopover .Popover-Arrow {
+  right: 63px;
 }

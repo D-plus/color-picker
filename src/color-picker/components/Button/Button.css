@@ -1,0 +1,21 @@
+.Button {
+  background: #eee;
+  color: black;
+  padding: 2px 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+  border: 1px solid grey;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+}
+
+.Button:hover {
+  color: #fff;
+  background: green;
+}
+
+.Button-grey {
+}
+
+.Button-green {
+}

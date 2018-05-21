@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './SelectPopover.css';
 
@@ -9,12 +8,19 @@ import expandable from '../hocs/expanable';
 import { selectPopoverTypes } from '../../type-check';
 
 class SelectPopover extends Component {
-  static propTypes = { ...selectPopoverTypes };
+  static get propTypes() {
+    return { ...selectPopoverTypes };
+  }
 
   constructor(props) {
     super(props);
     this.state = {};
     this.selectBox = React.createRef();
+    this.handleEnterKeyUp = this.handleEnterKeyUp.bind(this);
+  }
+
+  handleEnterKeyUp(e) {
+    if (e.key === 'Enter') this.props.toggleComponent(e);
   }
 
   render() {
@@ -23,28 +29,29 @@ class SelectPopover extends Component {
       selectBoxIconColor,
       toggleComponent,
       open,
-      popoverContentRenderer: {
-        contentContainer: ContentContainer,
-        extraProps = {}
-      },
+      popoverContentRenderer: { contentContainer: ContentContainer, extraProps = {} },
       popoverClassName,
       popoverMargin,
       onChange,
       options,
       value,
-      chageTemporaryHexValue
+      chageTemporaryHexValue,
+      selectBoxClassName,
+      className
     } = this.props;
     return (
-      <div className="SelectPopover">
+      <div className={classNames('SelectPopover', className)}>
         <SelectBox
+          className={selectBoxClassName}
           bindRef={this.selectBox}
           iconName={selectBoxIconName}
           iconColor={selectBoxIconColor}
           onClick={toggleComponent}
+          onKeyUp={this.handleEnterKeyUp}
         />
         {open && (
           <Popover
-            className={classNames('Popover', popoverClassName)}
+            className={popoverClassName}
             boundWithElement={this.selectBox}
             margin={popoverMargin}
           >

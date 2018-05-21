@@ -27,7 +27,6 @@ class App extends Component {
         value: nextColor
       }
     });
-    this.forceUpdate();
   }
 
   render() {

@@ -1,0 +1,14 @@
+.ColorItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  box-sizing: border-box;
+  align-items: center;
+  cursor: pointer;
+}
+.ColorItem span {
+  display: inline-block;
+  margin: 0 50px 0 0;
+  text-transform: uppercase;
+  font-size: 12px;
+}

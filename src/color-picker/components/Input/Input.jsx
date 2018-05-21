@@ -16,13 +16,11 @@ export default function Input(props) {
     placeholder,
     onChange,
     autoComplete,
+    minLength,
     maxLength,
     ...other
   } = props;
-  const extraProps = { value: '' };
-  if (value) {
-    extraProps.value = value;
-  }
+
   return (
     <div>
       <input
@@ -34,10 +32,11 @@ export default function Input(props) {
         placeholder={placeholder}
         onChange={onChange}
         required={required}
+        value={value}
         {...other}
-        {...extraProps}
         autoComplete={autoComplete || 'off'}
-        maxLength={maxLength || ''}
+        minLength={minLength}
+        maxLength={maxLength}
       />
     </div>
   );
@@ -48,10 +47,13 @@ Input.defaultProps = {
   id: null,
   type: 'text',
   placeholder: null,
-  onChange: () => {},
   disabled: false,
   value: '',
-  required: false
+  required: false,
+  className: '',
+  autoComplete: 'off',
+  minLength: '',
+  maxLength: ''
 };
 
 Input.propTypes = {
@@ -62,6 +64,10 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  autoComplete: PropTypes.string,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string
 };

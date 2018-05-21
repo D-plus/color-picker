@@ -1,5 +1,3 @@
-import { bindAll } from 'lodash';
-
 import React from 'react';
 
 export default function expandable(Target, stopClass) {
@@ -9,12 +7,19 @@ export default function expandable(Target, stopClass) {
       this.state = {
         open: false
       };
-      bindAll(
-        this,
-        'bodyNotificationClick',
-        'bodyNotificationReset',
-        'toggleComponent'
-      );
+      this.bodyNotificationClick = this.bodyNotificationClick.bind(this);
+      this.bodyNotificationReset = this.bodyNotificationReset.bind(this);
+      this.toggleComponent = this.toggleComponent.bind(this);
+    }
+
+    componentDidMount() {
+      document.body.addEventListener('click', this.bodyNotificationClick);
+      document.body.addEventListener('reset', this.bodyNotificationReset);
+    }
+
+    componentWillUnmount() {
+      document.body.removeEventListener('click', this.bodyNotificationClick);
+      document.body.removeEventListener('reset', this.bodyNotificationReset);
     }
 
     toggleComponent() {
@@ -36,22 +41,10 @@ export default function expandable(Target, stopClass) {
       this.setState({ open: false });
     }
 
-    componentDidMount() {
-      document.body.addEventListener('click', this.bodyNotificationClick);
-      document.body.addEventListener('reset', this.bodyNotificationReset);
-    }
     render() {
       return (
-        <Target
-          open={this.state.open}
-          toggleComponent={this.toggleComponent}
-          {...this.props}
-        />
+        <Target open={this.state.open} toggleComponent={this.toggleComponent} {...this.props} />
       );
-    }
-    componentWillUnmount() {
-      document.body.removeEventListener('click', this.bodyNotificationClick);
-      document.body.removeEventListener('reset', this.bodyNotificationReset);
     }
   };
 }

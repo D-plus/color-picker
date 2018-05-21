@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Popover.css';
+import { popoverTypes } from '../../type-check';
 
 class Popover extends Component {
-  static propTypes = {};
+  static get propTypes() {
+    return {
+      ...popoverTypes
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,8 +21,7 @@ class Popover extends Component {
   componentDidMount() {
     const { boundWithElement: { current: targetElement } } = this.props;
     const centerOfTargetElement = targetElement.offsetWidth / 2;
-    const leftCoordinateOfArrow =
-      centerOfTargetElement - this.arrowRef.current.offsetWidth / 2;
+    const leftCoordinateOfArrow = centerOfTargetElement - this.arrowRef.current.offsetWidth / 2;
     this.setState({
       leftCoordinateOfArrow
     });
@@ -28,14 +32,15 @@ class Popover extends Component {
     const {
       children,
       boundWithElement: { current: targetElement },
-      margin
+      margin,
+      className
     } = this.props;
     const { leftCoordinateOfArrow } = this.state;
 
     // console.log('Popover bindWithElement', targetElement);
     // style={{ left: leftCoordinateOfArrow }}
     return (
-      <div className="Popover" style={{ top: margin }}>
+      <div className={classNames('Popover', className)} style={{ margin }}>
         <span ref={this.arrowRef} className="Popover-Arrow">
           Arrow
         </span>

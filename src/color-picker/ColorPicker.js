@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindAll } from 'lodash';
 import classNames from 'classnames';
 import './ColorPicker.css';
 
@@ -11,21 +10,18 @@ import ColorsList from './components/ColorsList/ColorsList';
 import { colorPickerTypes } from './type-check';
 
 class ColorPicker extends Component {
-  static propTypes = {
-    ...colorPickerTypes
-  };
+  static get propTypes() {
+    return { ...colorPickerTypes };
+  }
   constructor(props) {
     super(props);
     this.state = {
       isHexValid: true,
       temporaryHexValue: ''
     };
-    bindAll(
-      this,
-      'handleInputChange',
-      'changeState',
-      'updateValidityOfHexString'
-    );
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.changeState = this.changeState.bind(this);
+    this.updateValidityOfHexString = this.updateValidityOfHexString.bind(this);
   }
 
   changeState(field) {
@@ -37,7 +33,6 @@ class ColorPicker extends Component {
   }
 
   updateValidityOfHexString(str) {
-    console.log('str', str);
     const isNextHextValid = validateHexString(str);
     if (this.state.isHexValid !== isNextHextValid) {
       this.setState({
@@ -48,29 +43,30 @@ class ColorPicker extends Component {
   }
 
   handleInputChange(e) {
-    const value = e.target.value;
+    const { target: { value } } = e;
     this.updateValidityOfHexString(value);
-
-    this.props.onChange(e, e.target.value);
+    this.props.onChange(e, value);
   }
 
   render() {
     const { color, colors, onChange } = this.props;
     const { isHexValid, temporaryHexValue } = this.state;
-
     return (
       <div className="ColorPicker">
-        <Input
-          className={classNames({ 'Input-Invalid-Value': !isHexValid })}
-          name="color-picker"
-          onChange={this.handleInputChange}
-          value={temporaryHexValue || color}
-        />
+        <div className="ColorPicker-input-wrapper">
+          <Input
+            className={classNames({ 'Input-Invalid-Value': !isHexValid })}
+            name="color-picker"
+            onChange={this.handleInputChange}
+            value={temporaryHexValue || color}
+            placeholder="#FFCC33"
+          />
+        </div>
         <SelectPopover
-          selectBoxIconName={'arrowDown'}
+          selectBoxIconName="square"
           selectBoxIconColor={temporaryHexValue || color}
-          popoverClassName={'RGBTuneBoxPopover'}
-          popoverMargin={20}
+          popoverClassName="RGBTuneBoxPopover"
+          popoverMargin={0}
           popoverContentRenderer={{
             contentContainer: RGBTuneBox,
             extraProps: {
@@ -82,11 +78,11 @@ class ColorPicker extends Component {
           onChange={onChange}
         />
         <SelectPopover
-          selectBoxIconName={'arrowDown'}
+          selectBoxIconName="arrowDown"
           selectBoxIconColor="#b1aeae"
           popoverContentRenderer={{ contentContainer: ColorsList }}
-          popoverClassName={'ColorsListPopover'}
-          popoverMargin={20}
+          popoverClassName="ColorsListPopover"
+          popoverMargin={0}
           value={color}
           options={colors}
           onChange={onChange}

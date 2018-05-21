@@ -1,24 +1,53 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './ColorsList.css';
 
 import ColorItem from '../ColorItem/ColorItem';
+import { colorsListTypes } from '../../type-check';
 
 class ColorsList extends Component {
-  static propTypes = {};
+  static get propTypes() {
+    return { ...colorsListTypes };
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleColorItemClick = this.handleColorItemClick.bind(this);
+    this.handleEnterKeyUp = this.handleEnterKeyUp.bind(this);
+    this.setNextColorValue = this.setNextColorValue.bind(this);
+  }
+
+  setNextColorValue(e, value) {
+    const { onChange, onClose } = this.props;
+    onChange(e, value);
+    onClose(e);
+  }
+
+  handleEnterKeyUp(item) {
+    return (e) => {
+      if (e.key === 'Enter') this.setNextColorValue(e, item.value);
+    };
+  }
+
+  handleColorItemClick(value) {
+    return (e) => {
+      this.setNextColorValue(e, value);
+    };
   }
 
   render() {
-    const { options, onChange } = this.props;
+    const { options: colors, className } = this.props;
 
     return (
-      <div className="ColorsList">
-        {options.map((item, key) => (
-          <ColorItem key={key} color={item} onChange={onChange} />
+      <div className={classNames('ColorsList', className)}>
+        {colors.map(item => (
+          <ColorItem
+            key={item.value}
+            item={item}
+            handleColorItemClick={this.handleColorItemClick(item.value)}
+            onKeyUp={this.handleEnterKeyUp(item)}
+          />
         ))}
       </div>
     );

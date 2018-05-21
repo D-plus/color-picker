@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import { bindAll } from 'lodash';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import InputRangeControl from '../InputRangeControl/InputRangeControl';
+import Button from '../Button/Button';
 import './RGBTuneBox.css';
-
 import Color from '../../helpers/Color';
+import { RGBTuneBoxTypes } from '../../type-check';
 
 class RGBTuneBox extends Component {
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    onClose: PropTypes.func.isRequired,
-    value: PropTypes.string,
-    className: PropTypes.string
-  };
+  static get propTypes() {
+    return { ...RGBTuneBoxTypes };
+  }
 
-  static defaultProps = {
-    defaultRGBState: {
-      r: 0,
-      g: 0,
-      b: 0
-    }
-  };
+  static get defaultProps() {
+    return {
+      defaultRGBState: { r: 0, g: 0, b: 0 }
+    };
+  }
 
   constructor(props) {
     super(props);
@@ -28,12 +23,12 @@ class RGBTuneBox extends Component {
       rgbObj: props.defaultRGBState,
       isColorSubmited: false
     };
-    bindAll(this, 'handleRangeInputChange', 'handleSubmitClick');
+    this.handleRangeInputChange = this.handleRangeInputChange.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
   }
 
   componentDidMount() {
     const { value, defaultRGBState } = this.props;
-    // console.log('value', value);
     const currentRGBColor = Color.hexToRgb(value);
     if (!currentRGBColor) {
       this.setState({ rgbObj: defaultRGBState });
@@ -51,14 +46,16 @@ class RGBTuneBox extends Component {
     }
   }
 
-  handleRangeInputChange(e, colorShortcut) {
-    const { rgbObj } = this.state;
-    const { chageTemporaryHexValue } = this.props;
-    const nextState = { ...rgbObj, [colorShortcut]: e.target.value };
+  handleRangeInputChange(colorShortcut) {
+    return (e) => {
+      const { rgbObj } = this.state;
+      const { chageTemporaryHexValue } = this.props;
+      const nextState = { ...rgbObj, [colorShortcut]: e.target.value };
 
-    this.setState({ rgbObj: nextState });
-    const nextHex = Color.rgbToHex(nextState);
-    chageTemporaryHexValue(e, nextHex);
+      this.setState({ rgbObj: nextState });
+      const nextHex = Color.rgbToHex(nextState);
+      chageTemporaryHexValue(e, nextHex);
+    };
   }
 
   handleSubmitClick(e) {
@@ -76,23 +73,28 @@ class RGBTuneBox extends Component {
 
     return (
       <div className={classNames('RGBTuneBox', className)}>
-        {Object.keys(defaultRGBState).map((colorShortcut, key) => (
-          <input
-            key={key}
-            value={rgbObj[colorShortcut]}
-            onChange={e => this.handleRangeInputChange(e, colorShortcut)}
-            type="range"
-            min={0}
-            max={255}
-            step={1}
-          />
-        ))}
-        <button type="button" onClick={this.handleSubmitClick}>
-          Ok
-        </button>
-        <button type="button" onClick={onClose}>
-          Cancel
-        </button>
+        <div className="RGBTuneBox-input-controls-wrapper">
+          {Object.keys(defaultRGBState).map(colorShortcut => (
+            <InputRangeControl
+              id={colorShortcut}
+              key={colorShortcut}
+              label={colorShortcut}
+              value={rgbObj[colorShortcut]}
+              onChange={this.handleRangeInputChange(colorShortcut)}
+              min={0}
+              max={255}
+              step={1}
+            />
+          ))}
+        </div>
+        <div className="RGBTuneBox-buttons-wrapper">
+          <Button color="grey" type="button" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button color="green" type="button" onClick={this.handleSubmitClick}>
+            Ok
+          </Button>
+        </div>
       </div>
     );
   }
