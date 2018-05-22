@@ -3,7 +3,10 @@
   flex-direction: column;
   padding: 10px;
   box-sizing: border-box;
-  max-width: 200px;
+  max-width: 240px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #9a9898;
 }
 .RGBTuneBox-input-controls-wrapper {
   margin: 0 0 10px;

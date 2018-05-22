@@ -31,7 +31,7 @@ class SelectPopover extends Component {
       open,
       popoverContentRenderer: { contentContainer: ContentContainer, extraProps = {} },
       popoverClassName,
-      popoverMargin,
+      popoverMarginTop,
       onChange,
       options,
       value,
@@ -52,8 +52,9 @@ class SelectPopover extends Component {
         {open && (
           <Popover
             className={popoverClassName}
+            relativeElementRef={extraProps.relativeElementRef}
             boundWithElement={this.selectBox}
-            margin={popoverMargin}
+            marginTop={popoverMarginTop}
           >
             <ContentContainer
               onChange={onChange}

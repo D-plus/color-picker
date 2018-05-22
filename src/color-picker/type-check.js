@@ -12,10 +12,10 @@ export const selectPopoverTypes = {
   open: PropTypes.bool.isRequired,
   popoverContentRenderer: PropTypes.shape({
     contentContainer: PropTypes.func,
-    extraProps: PropTypes.object
+    extraProps: PropTypes.shape({ relativeElementRef: PropTypes.object.isRequired }).isRequired
   }),
   popoverClassName: PropTypes.string,
-  popoverMargin: PropTypes.number.isRequired,
+  popoverMarginTop: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
@@ -24,7 +24,8 @@ export const selectPopoverTypes = {
   value: PropTypes.string,
   chageTemporaryHexValue: PropTypes.func,
   selectBoxClassName: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  relativeElementRef: PropTypes.object
 };
 
 export const colorPickerTypes = {
@@ -55,7 +56,7 @@ export const colorsListTypes = {
 export const popoverTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   boundWithElement: PropTypes.object,
-  margin: PropTypes.number,
+  marginTop: PropTypes.number,
   className: PropTypes.string
 };
 

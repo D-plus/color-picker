@@ -5,10 +5,11 @@
   margin: 10px 0 0 0;
   right: 0;
   box-shadow: 0 -2px 15px 0 rgba(0, 0, 0, 0.3);
+  background-color: #fff;
 }
 .Popover-Arrow {
   position: absolute;
-  right: 17px;
+  /* right: 17px; */
   top: -5px;
   width: 0;
   height: 0;
@@ -17,6 +18,6 @@
   border-color: transparent transparent #fff transparent;
   text-indent: -9999px;
 }
-.RGBTuneBoxPopover .Popover-Arrow {
-  right: 63px;
+.Popover-Arrow {
+  /* right: 63px; */
 }

@@ -13,37 +13,49 @@ class Popover extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      leftCoordinateOfArrow: 0
+      rightCoordinateOfArrowElement: 0
     };
     this.arrowRef = React.createRef();
   }
 
   componentDidMount() {
-    const { boundWithElement: { current: targetElement } } = this.props;
-    const centerOfTargetElement = targetElement.offsetWidth / 2;
-    const leftCoordinateOfArrow = centerOfTargetElement - this.arrowRef.current.offsetWidth / 2;
+    const {
+      relativeElementRef: { current: relativeElement },
+      boundWithElement: { current: targetElement }
+    } = this.props;
+    this.setArrowElementRelativeToTargetElement(relativeElement, targetElement, this.arrowRef);
+  }
+
+  setArrowElementRelativeToTargetElement(relativeElement, targetElement, arrowElement) {
+    const rightCoordinateOfRelativeElement = relativeElement.getBoundingClientRect().right;
+    const leftCoordinateOfTargetElement = targetElement.getBoundingClientRect().left;
+    const halfOffSetWidthOfTargetElement = targetElement.offsetWidth / 2;
+    const halfOffSetWidthOfArrowElement = arrowElement.current.offsetWidth / 2;
+    const sumOfRightLeftBorderWidthOfRelativeElem =
+      parseInt(window.getComputedStyle(relativeElement)['border-right-width'], 10) +
+      parseInt(window.getComputedStyle(relativeElement)['border-left-width'], 10);
+
+    const rightCoordinateOfArrowElement =
+      rightCoordinateOfRelativeElement -
+      leftCoordinateOfTargetElement -
+      halfOffSetWidthOfTargetElement -
+      halfOffSetWidthOfArrowElement -
+      sumOfRightLeftBorderWidthOfRelativeElem;
     this.setState({
-      leftCoordinateOfArrow
+      rightCoordinateOfArrowElement
     });
-    console.log('leftCoordinateOfArrow', leftCoordinateOfArrow);
   }
 
   render() {
-    const {
-      children,
-      boundWithElement: { current: targetElement },
-      margin,
-      className
-    } = this.props;
-    const { leftCoordinateOfArrow } = this.state;
-
-    // console.log('Popover bindWithElement', targetElement);
-    // style={{ left: leftCoordinateOfArrow }}
+    const { children, marginTop, className } = this.props;
+    const { rightCoordinateOfArrowElement } = this.state;
     return (
-      <div className={classNames('Popover', className)} style={{ margin }}>
-        <span ref={this.arrowRef} className="Popover-Arrow">
-          Arrow
-        </span>
+      <div className={classNames('Popover', className)} style={{ marginTop }}>
+        <span
+          ref={this.arrowRef}
+          className="Popover-Arrow"
+          style={{ right: rightCoordinateOfArrowElement }}
+        />
         {children}
       </div>
     );

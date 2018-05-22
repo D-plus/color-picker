@@ -22,7 +22,7 @@ export default function Input(props) {
   } = props;
 
   return (
-    <div>
+    <div className="ColorPickerInputWrapper">
       <input
         className={classNames('Input', className)}
         type={type}

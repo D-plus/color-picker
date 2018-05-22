@@ -12,7 +12,7 @@ class App extends Component {
           { label: 'red', value: '#ff0000' },
           { label: 'yellow', value: '#ffef00' },
           { label: 'green', value: '#03a903' },
-          { label: 'blue', value: '#0079ff' }
+          { label: 'blue', value: '#4a9ffd' }
         ]
       }
     };
@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   handleColorChange(e, nextColor) {
-    console.log(nextColor);
     this.setState({
       colorPicker: {
         ...this.state.colorPicker,
@@ -33,11 +32,7 @@ class App extends Component {
     const { colorPicker: { value, colors } } = this.state;
     return (
       <div className="App">
-        <ColorPicker
-          color={value}
-          colors={colors}
-          onChange={this.handleColorChange}
-        />
+        <ColorPicker color={value} colors={colors} onChange={this.handleColorChange} />
       </div>
     );
   }

@@ -19,6 +19,7 @@ class ColorPicker extends Component {
       isHexValid: true,
       temporaryHexValue: ''
     };
+    this.colorPicker = React.createRef();
     this.handleInputChange = this.handleInputChange.bind(this);
     this.changeState = this.changeState.bind(this);
     this.updateValidityOfHexString = this.updateValidityOfHexString.bind(this);
@@ -52,26 +53,25 @@ class ColorPicker extends Component {
     const { color, colors, onChange } = this.props;
     const { isHexValid, temporaryHexValue } = this.state;
     return (
-      <div className="ColorPicker">
-        <div className="ColorPicker-input-wrapper">
-          <Input
-            className={classNames({ 'Input-Invalid-Value': !isHexValid })}
-            name="color-picker"
-            onChange={this.handleInputChange}
-            value={temporaryHexValue || color}
-            placeholder="#FFCC33"
-          />
-        </div>
+      <div className="ColorPicker" ref={this.colorPicker}>
+        <Input
+          className={classNames({ 'Input-Invalid-Value': !isHexValid, InputColorPicker: true })}
+          name="color-picker"
+          onChange={this.handleInputChange}
+          value={temporaryHexValue || color}
+          placeholder="#FFCC33"
+        />
         <SelectPopover
           selectBoxIconName="square"
           selectBoxIconColor={temporaryHexValue || color}
           popoverClassName="RGBTuneBoxPopover"
-          popoverMargin={0}
+          popoverMarginTop={20}
           popoverContentRenderer={{
             contentContainer: RGBTuneBox,
             extraProps: {
               temporaryHexValue,
-              chageTemporaryHexValue: this.changeState('temporaryHexValue')
+              chageTemporaryHexValue: this.changeState('temporaryHexValue'),
+              relativeElementRef: this.colorPicker
             }
           }}
           value={color}
@@ -79,10 +79,15 @@ class ColorPicker extends Component {
         />
         <SelectPopover
           selectBoxIconName="arrowDown"
-          selectBoxIconColor="#b1aeae"
-          popoverContentRenderer={{ contentContainer: ColorsList }}
+          selectBoxIconColor="#989696"
+          popoverContentRenderer={{
+            contentContainer: ColorsList,
+            extraProps: {
+              relativeElementRef: this.colorPicker
+            }
+          }}
           popoverClassName="ColorsListPopover"
-          popoverMargin={0}
+          popoverMarginTop={20}
           value={color}
           options={colors}
           onChange={onChange}

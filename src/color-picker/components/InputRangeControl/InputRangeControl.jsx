@@ -9,11 +9,11 @@ export default function InputRangeControl(props) {
   } = props;
 
   return (
-    <div>
+    <div className="InputRangeControl">
       {label && <label htmlFor={id}>{label}</label>}
       <input
         id={id}
-        className={classNames('InputRangeControl', className)}
+        className={classNames(className)}
         value={value}
         onChange={onChange}
         type="range"

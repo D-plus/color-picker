@@ -1,10 +1,11 @@
 .Button {
-  background: #eee;
-  color: black;
-  padding: 2px 5px;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  background-color: #dedede;
+  color: #9a9898;
+  padding: 3px 12px;
   text-transform: uppercase;
-  border: 1px solid grey;
+  border: 1px solid #bdbdbd;
   cursor: pointer;
   margin: 0 0 0 10px;
 }
@@ -12,6 +13,11 @@
 .Button:hover {
   color: #fff;
   background: green;
+}
+
+.Button:focus {
+  outline: 0;
+  box-shadow: 0px 0px 2px 2px rgba(139, 204, 51, 1);
 }
 
 .Button-grey {

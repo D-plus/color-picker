@@ -1,75 +1,44 @@
 .InputRangeControl {
 }
 
-.InputRangeControl {
+.InputRangeControl input {
   -webkit-appearance: none;
   margin: 10px 0;
   width: 100%;
 }
-.InputRangeControl:focus {
+
+.InputRangeControl {
+  display: flex;
+  padding: 5px 0px 5px 10px;
+  text-transform: uppercase;
+  align-items: center;
+}
+
+.InputRangeControl label {
+  padding-right: 10px;
+  width: 22px;
+  box-sizing: border-box;
+}
+
+.InputRangeControl input {
+  width: 172px;
+}
+
+.InputRangeControl input:focus {
   outline: none;
 }
-.InputRangeControl::-webkit-slider-runnable-track {
+
+.InputRangeControl input::-webkit-slider-runnable-track {
   width: 100%;
   height: 2px;
   cursor: pointer;
   animate: 0.2s;
-  background: linear-gradient(to right, #ff3232 0%, #000000 100%);
+  background: linear-gradient(to right, #000000 0%, #ff3232 100%);
   border-radius: 1.3px;
   border: 0.2px solid #010101;
 }
-.InputRangeControl::-webkit-slider-thumb {
-  height: 10px;
-  width: 10px;
-  border-radius: 100%;
-  background: grey;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -4px;
-  border: 2px solid #fff;
-}
-.InputRangeControl::-moz-range-track {
-  width: 100%;
-  height: 2px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: linear-gradient(to right, #ff3232 0%, #000000 100%);
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
-}
-.InputRangeControl::-moz-range-thumb {
-  height: 10px;
-  width: 10px;
-  border-radius: 100%;
-  background: grey;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -4px;
-  border: 2px solid #fff;
-}
-.InputRangeControl::-ms-track {
-  width: 100%;
-  height: 2px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  border-width: 16px 0;
-  color: transparent;
-}
-.InputRangeControl::-ms-fill-lower {
-  background: #2a6495;
-  border: 0.2px solid #010101;
-  border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-}
-.InputRangeControl::-ms-fill-upper {
-  background: #3071a9;
-  border: 0.2px solid #010101;
-  border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-}
-.InputRangeControl::-ms-thumb {
+
+.InputRangeControl input::-webkit-slider-thumb {
   height: 10px;
   width: 10px;
   border-radius: 100%;
@@ -80,15 +49,74 @@
   border: 2px solid #fff;
 }
 
-.InputRangeControl:nth-of-type(2)::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, #2cdd4c 0%, #000000 100%);
+.InputRangeControl input::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: linear-gradient(to right, #000000 0%, #ff3232 100%);
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
 }
-.InputRangeControl:nth-of-type(2)::-moz-range-track {
-  background: linear-gradient(to right, #2cdd4c 0%, #000000 100%);
+.InputRangeControl input::-moz-range-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background: grey;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+  border: 2px solid #fff;
 }
-.InputRangeControl:nth-of-type(3)::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, #008de5 0%, #000000 100%);
+
+.InputRangeControl input::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
 }
-.InputRangeControl:nth-of-type(3)::-moz-range-track {
-  background: linear-gradient(to right, #008de5 0%, #000000 100%);
+
+.InputRangeControl input::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+.InputRangeControl input::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+.InputRangeControl input::-ms-thumb {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background: grey;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+  border: 2px solid #fff;
+}
+
+.InputRangeControl:nth-of-type(2) input::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #000000 0%, #2cdd4c 100%);
+}
+
+.InputRangeControl:nth-of-type(2) input::-moz-range-track {
+  background: linear-gradient(to right, #000000 0%, #2cdd4c 100%);
+}
+
+.InputRangeControl:nth-of-type(3) input::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #000000 0%, #008de5 100%);
+}
+
+.InputRangeControl:nth-of-type(3) input::-moz-range-track {
+  background: linear-gradient(to right, #000000 0%, #008de5 100%);
 }
