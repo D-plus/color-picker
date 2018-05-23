@@ -5,7 +5,7 @@ import './SelectPopover.css';
 import SelectBox from '../SelectBox/SelectBox';
 import Popover from '../Popover/Popover';
 import expandable from '../hocs/expanable';
-import { selectPopoverTypes } from '../../type-check';
+import { selectPopoverTypes } from '../../common/type-check';
 
 class SelectPopover extends Component {
   static get propTypes() {

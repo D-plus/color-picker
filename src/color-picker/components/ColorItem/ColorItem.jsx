@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './ColorItem.css';
 
 import SVGIcon from '../SVGIcon/SVGIcon';
-import { colorItemTypes } from '../../type-check';
+import { colorItemTypes } from '../../common/type-check';
 
 export default function ColorItem({
   handleColorItemClick, item, onKeyUp, className, active

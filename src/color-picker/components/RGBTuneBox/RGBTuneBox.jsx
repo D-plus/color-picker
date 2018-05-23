@@ -4,7 +4,7 @@ import InputRangeControl from '../InputRangeControl/InputRangeControl';
 import Button from '../Button/Button';
 import './RGBTuneBox.css';
 import Color from '../../helpers/Color';
-import { RGBTuneBoxTypes } from '../../type-check';
+import { RGBTuneBoxTypes } from '../../common/type-check';
 
 export default class RGBTuneBox extends Component {
   static get propTypes() {

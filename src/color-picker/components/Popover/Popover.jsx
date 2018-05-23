@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import './Popover.css';
-import { popoverTypes } from '../../type-check';
+import { popoverTypes } from '../../common/type-check';
 
 export default class Popover extends Component {
   static get propTypes() {

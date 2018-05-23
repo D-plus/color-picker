@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './ColorsList.css';
 
 import ColorItem from '../ColorItem/ColorItem';
-import { colorsListTypes } from '../../type-check';
+import { colorsListTypes } from '../../common/type-check';
 
 export default class ColorsList extends Component {
   static get propTypes() {

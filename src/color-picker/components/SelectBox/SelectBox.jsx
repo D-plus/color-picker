@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './SelectBox.css';
 
 import SVGIcon from '../SVGIcon/SVGIcon';
-import { selectBoxTypes } from '../../type-check';
+import { selectBoxTypes } from '../../common/type-check';
 
 export default function SelectBox({
   iconName, iconColor, onClick, bindRef, onKeyUp, className

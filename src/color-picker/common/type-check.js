@@ -29,7 +29,7 @@ export const selectPopoverTypes = {
 };
 
 export const colorPickerTypes = {
-  color: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   colors: listOfColors,
   onChange: PropTypes.func.isRequired
 };

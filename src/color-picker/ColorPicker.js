@@ -7,7 +7,7 @@ import SelectPopover from './components/SelectPopover/SelectPopover';
 import RGBTuneBox from './components/RGBTuneBox/RGBTuneBox';
 import ColorsList from './components/ColorsList/ColorsList';
 import { validateHexString } from './helpers/functions';
-import { colorPickerTypes } from './type-check';
+import { colorPickerTypes } from './common/type-check';
 
 export default class ColorPicker extends Component {
   static get propTypes() {
@@ -51,7 +51,7 @@ export default class ColorPicker extends Component {
   }
 
   render() {
-    const { color, colors, onChange } = this.props;
+    const { value, colors, onChange } = this.props;
     const { isHexValid, temporaryHexValue } = this.state;
     return (
       <div className="ColorPicker" ref={this.colorPicker}>
@@ -59,12 +59,12 @@ export default class ColorPicker extends Component {
           className={classNames({ 'Input-Invalid-Value': !isHexValid, InputColorPicker: true })}
           name="color-picker"
           onChange={this.handleInputChange}
-          value={temporaryHexValue || color}
+          value={temporaryHexValue || value}
           placeholder="#FFCC33"
         />
         <SelectPopover
           selectBoxIconName="square"
-          selectBoxIconColor={temporaryHexValue || color}
+          selectBoxIconColor={temporaryHexValue || value}
           popoverClassName="RGBTuneBoxPopover"
           popoverMarginTop={20}
           popoverContentRenderer={{
@@ -75,7 +75,7 @@ export default class ColorPicker extends Component {
               relativeElementRef: this.colorPicker
             }
           }}
-          value={color}
+          value={value}
           onChange={onChange}
         />
         <SelectPopover
@@ -89,7 +89,7 @@ export default class ColorPicker extends Component {
           }}
           popoverClassName="ColorsListPopover"
           popoverMarginTop={20}
-          value={color}
+          value={value}
           options={colors}
           onChange={onChange}
         />

@@ -32,7 +32,7 @@ class App extends Component {
     const { colorPicker: { value, colors } } = this.state;
     return (
       <div className="App">
-        <ColorPicker color={value} colors={colors} onChange={this.handleColorChange} />
+        <ColorPicker value={value} colors={colors} onChange={this.handleColorChange} />
       </div>
     );
   }
