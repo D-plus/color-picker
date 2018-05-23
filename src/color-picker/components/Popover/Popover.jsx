@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './Popover.css';
 import { popoverTypes } from '../../type-check';
 
-class Popover extends Component {
+export default class Popover extends Component {
   static get propTypes() {
     return {
       ...popoverTypes
@@ -31,16 +31,17 @@ class Popover extends Component {
     const leftCoordinateOfTargetElement = targetElement.getBoundingClientRect().left;
     const halfOffSetWidthOfTargetElement = targetElement.offsetWidth / 2;
     const halfOffSetWidthOfArrowElement = arrowElement.current.offsetWidth / 2;
-    const sumOfRightLeftBorderWidthOfRelativeElem =
-      parseInt(window.getComputedStyle(relativeElement)['border-right-width'], 10) +
-      parseInt(window.getComputedStyle(relativeElement)['border-left-width'], 10);
+    const rightBorderWidthOfRelativeElem = parseInt(
+      window.getComputedStyle(relativeElement)['border-right-width'],
+      10
+    );
 
     const rightCoordinateOfArrowElement =
       rightCoordinateOfRelativeElement -
       leftCoordinateOfTargetElement -
       halfOffSetWidthOfTargetElement -
       halfOffSetWidthOfArrowElement -
-      sumOfRightLeftBorderWidthOfRelativeElem;
+      rightBorderWidthOfRelativeElem;
     this.setState({
       rightCoordinateOfArrowElement
     });
@@ -61,5 +62,3 @@ class Popover extends Component {
     );
   }
 }
-
-export default Popover;

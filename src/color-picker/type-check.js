@@ -41,7 +41,8 @@ export const colorItemTypes = {
     label: PropTypes.string.isRequired
   }).isRequired,
   onKeyUp: PropTypes.func.isRequired,
-  className: PropTypes.string
+  className: PropTypes.object,
+  active: PropTypes.bool
 };
 
 export const colorsListTypes = {

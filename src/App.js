@@ -10,7 +10,7 @@ class App extends Component {
         value: '#FFCC33',
         colors: [
           { label: 'red', value: '#ff0000' },
-          { label: 'yellow', value: '#ffef00' },
+          { label: 'yellow', value: '#ffcc33' },
           { label: 'green', value: '#03a903' },
           { label: 'blue', value: '#4a9ffd' }
         ]

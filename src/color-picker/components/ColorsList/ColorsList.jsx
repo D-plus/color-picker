@@ -5,7 +5,7 @@ import './ColorsList.css';
 import ColorItem from '../ColorItem/ColorItem';
 import { colorsListTypes } from '../../type-check';
 
-class ColorsList extends Component {
+export default class ColorsList extends Component {
   static get propTypes() {
     return { ...colorsListTypes };
   }
@@ -37,13 +37,13 @@ class ColorsList extends Component {
   }
 
   render() {
-    const { options: colors, className } = this.props;
-
+    const { options: colors, value: currentSelectedColor, className } = this.props;
     return (
       <div className={classNames('ColorsList', className)}>
         {colors.map(item => (
           <ColorItem
             key={item.value}
+            active={currentSelectedColor.toLowerCase() === item.value.toLowerCase()}
             item={item}
             handleColorItemClick={this.handleColorItemClick(item.value)}
             onKeyUp={this.handleEnterKeyUp(item)}
@@ -53,5 +53,3 @@ class ColorsList extends Component {
     );
   }
 }
-
-export default ColorsList;

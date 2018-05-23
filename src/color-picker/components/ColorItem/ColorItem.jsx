@@ -5,12 +5,12 @@ import './ColorItem.css';
 import SVGIcon from '../SVGIcon/SVGIcon';
 import { colorItemTypes } from '../../type-check';
 
-function ColorItem({
-  handleColorItemClick, item, onKeyUp, className
+export default function ColorItem({
+  handleColorItemClick, item, onKeyUp, className, active
 }) {
   return (
     <div
-      className={classNames('ColorItem', className)}
+      className={classNames({ ColorItem: true, ...className, active })}
       onClick={handleColorItemClick}
       role="menuitem"
       tabIndex={0}
@@ -25,5 +25,3 @@ function ColorItem({
 ColorItem.propTypes = {
   ...colorItemTypes
 };
-
-export default ColorItem;

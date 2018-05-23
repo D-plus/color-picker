@@ -4,7 +4,7 @@
 .InputRangeControl input {
   -webkit-appearance: none;
   margin: 10px 0;
-  width: 100%;
+  width: 172px;
 }
 
 .InputRangeControl {
@@ -20,12 +20,19 @@
   box-sizing: border-box;
 }
 
-.InputRangeControl input {
-  width: 172px;
+.InputRangeControl-R:focus {
+  outline: none;
+  box-shadow: 0px 0px 2px 1px rgba(244, 67, 54, 1);
 }
 
-.InputRangeControl input:focus {
+.InputRangeControl-G:focus {
   outline: none;
+  box-shadow: 0px 0px 2px 1px rgba(139, 204, 51, 1);
+}
+
+.InputRangeControl-B:focus {
+  outline: none;
+  box-shadow: 0px 0px 2px 1px rgba(33, 150, 243, 1);
 }
 
 .InputRangeControl input::-webkit-slider-runnable-track {

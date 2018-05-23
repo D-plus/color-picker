@@ -8,9 +8,7 @@
   font-size: 14px;
   color: #9a9898;
 }
-.RGBTuneBox-input-controls-wrapper {
-  margin: 0 0 10px;
-}
+
 .RGBTuneBox-buttons-wrapper {
   display: flex;
   justify-content: flex-end;

@@ -4,7 +4,9 @@ import classNames from 'classnames';
 import icons from '../../helpers/icons';
 import './SVGIcon.css';
 
-export default function SVGIcon({ color = '#667378', icon, fill, className }) {
+export default function SVGIcon({
+  color, icon, fill, className
+}) {
   return (
     <svg
       style={{ fill: color }}

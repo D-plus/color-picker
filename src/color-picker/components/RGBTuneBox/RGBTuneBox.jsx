@@ -6,15 +6,13 @@ import './RGBTuneBox.css';
 import Color from '../../helpers/Color';
 import { RGBTuneBoxTypes } from '../../type-check';
 
-class RGBTuneBox extends Component {
+export default class RGBTuneBox extends Component {
   static get propTypes() {
     return { ...RGBTuneBoxTypes };
   }
 
   static get defaultProps() {
-    return {
-      defaultRGBState: { r: 0, g: 0, b: 0 }
-    };
+    return { defaultRGBState: { r: 0, g: 0, b: 0 } };
   }
 
   constructor(props) {
@@ -70,12 +68,12 @@ class RGBTuneBox extends Component {
   render() {
     const { onClose, className, defaultRGBState } = this.props;
     const { rgbObj } = this.state;
-
     return (
       <div className={classNames('RGBTuneBox', className)}>
         <div className="RGBTuneBox-input-controls-wrapper">
           {Object.keys(defaultRGBState).map(colorShortcut => (
             <InputRangeControl
+              className={`InputRangeControl-${colorShortcut.toUpperCase()}`}
               id={colorShortcut}
               key={colorShortcut}
               label={colorShortcut}
@@ -99,5 +97,3 @@ class RGBTuneBox extends Component {
     );
   }
 }
-
-export default RGBTuneBox;

@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import './ColorPicker.css';
 
-import { validateHexString } from './helpers/functions';
 import Input from './components/Input/Input';
 import SelectPopover from './components/SelectPopover/SelectPopover';
 import RGBTuneBox from './components/RGBTuneBox/RGBTuneBox';
 import ColorsList from './components/ColorsList/ColorsList';
+import { validateHexString } from './helpers/functions';
 import { colorPickerTypes } from './type-check';
 
-class ColorPicker extends Component {
+export default class ColorPicker extends Component {
   static get propTypes() {
     return { ...colorPickerTypes };
   }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -96,5 +97,3 @@ class ColorPicker extends Component {
     );
   }
 }
-
-export default ColorPicker;
