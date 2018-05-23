@@ -1,9 +1,9 @@
-# To run this app:
+## To run this app:
 
-# `git clone https://github.com/D-plus/color-picker.git`
+`git clone https://github.com/D-plus/color-picker.git`
 
-# `yarn install`
+`yarn install`
 
-# `yarn start`
+`yarn start`
 
-## Thanks!
+# Thanks!
